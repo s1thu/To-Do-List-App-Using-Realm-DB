@@ -9,8 +9,12 @@ import UIKit
 
 class HomeVC: UIViewController, StoryBoarded {
     
+    
+    
     static var storyboardName: String = "Main"
     @IBOutlet weak var tblTodos: UITableView!
+    
+    lazy var vm = HomeVM.init(delegate: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +28,7 @@ class HomeVC: UIViewController, StoryBoarded {
         tblTodos.estimatedRowHeight = 100
         tblTodos.rowHeight = UITableView.automaticDimension
         tblTodos.register(.init(nibName: "TaskCell", bundle: nil), forCellReuseIdentifier: "TaskCell")
-        
+        vm.getAllTasks()
         
     }
     
@@ -41,7 +45,7 @@ class HomeVC: UIViewController, StoryBoarded {
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return vm.tasks.count 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,5 +60,13 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+}
+
+extension HomeVC:HomeViewDelegate{
+    func onGetTasks() {
+        tblTodos.reloadData()
+    }
+    
     
 }
