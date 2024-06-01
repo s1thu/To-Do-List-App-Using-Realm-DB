@@ -9,6 +9,7 @@ import Foundation
 
 protocol HomeViewDelegate{
     func onGetTasks()
+    func onError(error:String)
 }
 
 class HomeVM{
@@ -24,8 +25,14 @@ class HomeVM{
     private (set) var tasks:[TaskVO] = []
     
     func getAllTasks(){
-        taskRepository.getAllTask { task in
-            self.tasks = task
+//        taskRepository.getAllTask { task in
+//            self.tasks = task
+//        }
+        taskRepository.getAllTask { tasks in
+            self.tasks = tasks
+        } onFailed: { error in
+            self.delegate.onError(error: error)
         }
+
     }
 }

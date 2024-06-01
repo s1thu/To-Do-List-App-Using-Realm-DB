@@ -14,6 +14,9 @@ class TaskLocalDatasource{
     
     static let shared = TaskLocalDatasource.init()
     
+    //For data streaming need Notification Token
+    var realmChangeListner: NotificationToken?
+    
     private init(){
         realm = try! Realm()
     }
@@ -31,6 +34,24 @@ class TaskLocalDatasource{
     func getAllTasks() -> [TaskVO]{
         Array(realm.objects(TaskEntity.self)).map { TaskEntity in
             TaskEntity.toVO()
+        }
+    }
+    
+    //Get Tasks data Streaming
+    func getAllTasksData(
+    onSuccess:@escaping([TaskVO]) -> (),
+    onFailed:@escaping(String) -> ()
+    ){
+        //Register Listener
+        realmChangeListner = realm.objects(TaskEntity.self).observe{ (changes:RealmCollectionChange) in
+            switch changes {
+            case .initial(let taskResult):
+                onSuccess(taskResult.map{$0.toVO()})
+            case .update(let taskResult, _, _, _):
+                onSuccess(taskResult.map{$0.toVO()})
+            case .error(let error):
+                onFailed(error.localizedDescription)
+            }
         }
     }
     

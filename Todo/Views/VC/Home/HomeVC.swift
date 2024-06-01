@@ -68,5 +68,9 @@ extension HomeVC:HomeViewDelegate{
         tblTodos.reloadData()
     }
     
+    func onError(error: String) {
+        print(error)
+    }
+    
     
 }

@@ -29,10 +29,13 @@ class TaskRepository{
     
     //Realm can't raise error when Read() call
     func getAllTask(
-        onSuccess:@escaping([TaskVO]) -> ()
+        onSuccess:@escaping([TaskVO]) -> (),
+        onFailed:@escaping(String) -> ()
     ){
-        let data = taskLocalDatasource.getAllTasks()
-        onSuccess(data)
+//        let data = taskLocalDatasource.getAllTasks()
+//        onSuccess(data)
+        taskLocalDatasource.getAllTasksData(onSuccess: onSuccess, onFailed: onFailed)
+        
     }
     
     func deleteTask(id:String,
