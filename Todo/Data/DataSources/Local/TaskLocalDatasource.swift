@@ -27,6 +27,7 @@ class TaskLocalDatasource{
     func addTask(for task:TaskVO ) throws{
         try realm.write {
             realm.add(task.toEntity(), update: .all)
+            print(realm.objects(TaskEntity.self))
         }
     }
     

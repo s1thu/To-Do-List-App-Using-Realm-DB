@@ -10,6 +10,7 @@ import Foundation
 protocol HomeViewDelegate{
     func onGetTasks()
     func onError(error:String)
+    
 }
 
 class HomeVM{
@@ -22,7 +23,11 @@ class HomeVM{
         self.delegate = delegate
     }
     
-    private (set) var tasks:[TaskVO] = []
+    private (set) var tasks:[TaskVO] = []{
+        didSet{
+            self.delegate.onGetTasks()
+        }
+    }
     
     func getAllTasks(){
 //        taskRepository.getAllTask { task in
