@@ -60,14 +60,17 @@ class TaskLocalDatasource{
     //When fetch with Id, ID can exist or not that's why add optional.
     //If Id is exist return VO. If not return nil
     func getTaskById(id:String) -> TaskVO? {
-        realm
-            .object(ofType: TaskEntity.self, forPrimaryKey: id)?.toVO()
+        
+        guard let objectId = try? ObjectId(string: id) else { return nil }
+        
+        return realm
+            .object(ofType: TaskEntity.self, forPrimaryKey: objectId)?.toVO()
     }
     
     //Soft Delete -> isActive Flag -> False
     func deleteTask(id:String) throws{
        let task = realm
-            .object(ofType: TaskEntity.self, forPrimaryKey: id)
+            .object(ofType: TaskEntity.self, forPrimaryKey:try? ObjectId(string: id))
         if let task = task {
             try realm.write {
                 //Update Query

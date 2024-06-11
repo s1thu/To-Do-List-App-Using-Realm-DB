@@ -29,6 +29,7 @@
 		FFCF055A2C08DC1900AD7816 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCF05592C08DC1900AD7816 /* TaskRepository.swift */; };
 		FFCF055C2C08DED300AD7816 /* AddTodoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCF055B2C08DED300AD7816 /* AddTodoVM.swift */; };
 		FFCF055E2C08E31C00AD7816 /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFCF055D2C08E31C00AD7816 /* HomeVM.swift */; };
+		FFDE6D5B2C173FB4002B95AB /* UpdateToDoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDE6D5A2C173FB4002B95AB /* UpdateToDoVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		FFCF05592C08DC1900AD7816 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
 		FFCF055B2C08DED300AD7816 /* AddTodoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoVM.swift; sourceTree = "<group>"; };
 		FFCF055D2C08E31C00AD7816 /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
+		FFDE6D5A2C173FB4002B95AB /* UpdateToDoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateToDoVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				8DCF96662C031D0F00C65146 /* UpdateTodoVC.swift */,
+				FFDE6D5A2C173FB4002B95AB /* UpdateToDoVM.swift */,
 			);
 			path = UpdateTodo;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				8DCF96672C031D0F00C65146 /* UpdateTodoVC.swift in Sources */,
 				FFCF05582C08D71800AD7816 /* TaskVO.swift in Sources */,
 				8DCF96232C03172C00C65146 /* HomeVC.swift in Sources */,
+				FFDE6D5B2C173FB4002B95AB /* UpdateToDoVM.swift in Sources */,
 				8DCF961F2C03172C00C65146 /* AppDelegate.swift in Sources */,
 				8DCF96582C0318C700C65146 /* Storyboarded.swift in Sources */,
 				FFCF05542C08D53100AD7816 /* Mapper.swift in Sources */,

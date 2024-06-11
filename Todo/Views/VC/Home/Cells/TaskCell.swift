@@ -11,6 +11,16 @@ class TaskCell: UITableViewCell {
 
     @IBOutlet weak var lblTaskName: UILabel!
     @IBOutlet weak var lblDesc: UILabel!
+    
+    var data:TaskVO? = nil {
+        didSet{
+            if let data = data{
+                lblTaskName.text = data.title
+                lblDesc.text = data.taskDescription
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,5 +31,10 @@ class TaskCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+//    func bindData(data:TaskVO){
+//        lblTaskName.text = data.title
+//        lblDesc.text = data.taskDescription
+//    }
     
 }

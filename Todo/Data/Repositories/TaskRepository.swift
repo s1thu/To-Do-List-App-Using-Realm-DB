@@ -51,7 +51,12 @@ class TaskRepository{
         
     }
     
-    func getTaskById(){
-        
+    func getTaskById(id:String,
+                     onSuccess:@escaping (TaskVO) -> ()
+                     
+    ){
+        if let data = taskLocalDatasource.getTaskById(id: id){
+            onSuccess(data)
+        }
     }
 }

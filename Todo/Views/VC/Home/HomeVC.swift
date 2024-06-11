@@ -45,25 +45,43 @@ class HomeVC: UIViewController, StoryBoarded {
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vm.tasks.count 
+        for task in vm.tasks {
+            print("\(task.title) \(task.taskDescription) \(task.id) \(task.isActive)")
+        }
+        return vm.tasks.filter{$0.isActive }.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as? TaskCell else { return UITableViewCell() }
+        
+        //for binding data
+        let task = vm.tasks.filter{$0.isActive}
+        cell.data = task[indexPath.row]
         return cell
+        
+        
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //go to details
         let vc = UpdateTodoVC.ininstantiate()
+        //pass data to updateToDoVC
+        let task = vm.tasks.filter{$0.isActive}
+        let id:String? = task[indexPath.row].id
+        vm.getTasksById(id: id!)
+        vc.data = vm.task
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        
     }
     
 }
 
 extension HomeVC:HomeViewDelegate{
+   
+    
     func onGetTasks() {
         tblTodos.reloadData()
     }
