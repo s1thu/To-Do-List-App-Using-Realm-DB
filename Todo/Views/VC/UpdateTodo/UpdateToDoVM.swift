@@ -10,6 +10,8 @@ import Foundation
 protocol UpdateToDoVMDelegate{
     func onValidate(passed:Bool)
     func onDeleteSuccess()
+    func onUpdateSuccess()
+    func onError(error: String)
 }
 
 class UpdateToDoVM{
@@ -56,6 +58,16 @@ class UpdateToDoVM{
         } onFailed: { error in
             print(error)
         }
+
+    }
+    
+    func updateTask(id:String){
+        taskRepository.updateTask(main: id,with: taskName!, and: taskDescription!) { [weak self] in
+            self?.delegate.onUpdateSuccess()
+        } onFailed: { error in
+            self.delegate.onError(error: error)
+        }
+
 
     }
     

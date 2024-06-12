@@ -43,26 +43,37 @@ class UpdateTodoVC: UIViewController,StoryBoarded {
     }
     
     @objc func onChangeTaskName(){
-        vm.setTaskName(taskName: tfTaskName.text)
+        onChangeData()
     }
     
     @objc func onChangeDescription(){
+        onChangeTaskName()
+    }
+    
+    func onChangeData(){
+        vm.setTaskName(taskName: tfTaskName.text)
         vm.setTaskDesc(taskDesc: tfDesc.text)
     }
     
     @objc func onTapUpdate() {
-        
+        vm.updateTask(id: (data?.id)!)
     }
     
     @objc func onTapDelete() {
-        vm.deleteTask(id: (data?.id)!)
-//        vm.getTaskById(id: (data?.id)!)
+        vm.deleteTask(id:(data?.id)!)
     }
     
 }
 extension UpdateTodoVC: UpdateToDoVMDelegate{
+    func onUpdateSuccess() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func onError(error: String) {
+        print(error)
+    }
+    
     func onDeleteSuccess() {
-        
         self.navigationController?.popViewController(animated: true)
     }
     

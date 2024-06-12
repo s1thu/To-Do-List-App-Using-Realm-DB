@@ -79,4 +79,19 @@ class TaskLocalDatasource{
             }
         }
     }
+    
+    //Update Task
+    func updatTask(data:TaskVO) throws{
+       let task = realm
+            .object(ofType: TaskEntity.self, forPrimaryKey:try? ObjectId(string: data.id!))
+        if let task = task {
+            try realm.write {
+                //Update Query
+                //that's why we use VO in UILevel
+
+                task.title = data.title
+                task.taskDescription = data.taskDescription
+            }
+        }
+    }
 }

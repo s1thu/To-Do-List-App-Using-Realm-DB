@@ -59,4 +59,20 @@ class TaskRepository{
             onSuccess(data)
         }
     }
+    
+    func updateTask(main id:String,
+        with taskName:String,
+                    and taskDescription:String,
+                    onSuccess:@escaping() -> (),
+                    onFailed:@escaping(String) -> ())
+    {
+        do {
+            try taskLocalDatasource.updatTask(data: .init(id: id, title: taskName, taskDescription: taskDescription, isActive: true))
+            onSuccess()
+        } catch  {
+            onFailed(error.localizedDescription)
+        }
+        
+        
+    }
 }
