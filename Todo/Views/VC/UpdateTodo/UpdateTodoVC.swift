@@ -18,6 +18,12 @@ class UpdateTodoVC: UIViewController,StoryBoarded {
     
     lazy var vm = UpdateToDoVM.init(delegate: self)
     
+    var id:String? = nil{
+        didSet{
+            vm.getTaskById(id: id)
+        }
+    }
+    
     var data:TaskVO? = nil {
         didSet{
             if let data = data{
@@ -65,6 +71,10 @@ class UpdateTodoVC: UIViewController,StoryBoarded {
     
 }
 extension UpdateTodoVC: UpdateToDoVMDelegate{
+    func onSuccessGetTask(data: TaskVO) {
+        self.data = data
+    }
+    
     func onUpdateSuccess() {
         self.navigationController?.popViewController(animated: true)
     }

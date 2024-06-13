@@ -12,6 +12,7 @@ protocol UpdateToDoVMDelegate{
     func onDeleteSuccess()
     func onUpdateSuccess()
     func onError(error: String)
+    func onSuccessGetTask(data:TaskVO)
 }
 
 class UpdateToDoVM{
@@ -69,6 +70,12 @@ class UpdateToDoVM{
         }
 
 
+    }
+    
+    func getTaskById(id:String?){
+        taskRepository.getTaskById(id: id!) { data in
+            self.delegate.onSuccessGetTask(data: data)
+        }
     }
     
 }

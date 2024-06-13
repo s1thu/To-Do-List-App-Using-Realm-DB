@@ -68,9 +68,8 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         let vc = UpdateTodoVC.ininstantiate()
         //pass data to updateToDoVC
         let task = vm.tasks.filter{$0.isActive}
-        let id:String? = task[indexPath.row].id
-        vm.getTasksById(id: id!)
-        vc.data = vm.task
+        vc.id = task[indexPath.row].id
+//        vc.data = vm.task
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
         
